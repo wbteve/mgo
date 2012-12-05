@@ -1,9 +1,9 @@
 package txn_test
 
 import (
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
-	"labix.org/v2/mgo/txn"
+	"github.com/skynetservices/mgo"
+	"github.com/skynetservices/mgo/bson"
+	"github.com/skynetservices/mgo/txn"
 	. "launchpad.net/gocheck"
 	"testing"
 )
@@ -266,8 +266,8 @@ func (s *S) TestChangeLog(c *C) {
 	s.runner.ChangeLog(chglog)
 
 	ops := []txn.Op{{
-		C:	"debts",
-		Id:	0,
+		C:      "debts",
+		Id:     0,
 		Assert: txn.DocMissing,
 	}, {
 		C:      "accounts",
@@ -278,8 +278,8 @@ func (s *S) TestChangeLog(c *C) {
 		Id:     1,
 		Insert: M{"balance": 300},
 	}, {
-		C:	"people",
-		Id:	"joe",
+		C:      "people",
+		Id:     "joe",
 		Insert: M{"accounts": []int64{0, 1}},
 	}}
 	id := bson.NewObjectId()
@@ -287,7 +287,10 @@ func (s *S) TestChangeLog(c *C) {
 	c.Assert(err, IsNil)
 
 	type IdList []interface{}
-	type Log struct { Docs IdList "d"; Revnos []int64 "r" }
+	type Log struct {
+		Docs   IdList  "d"
+		Revnos []int64 "r"
+	}
 	var m map[string]*Log
 	err = chglog.FindId(id).One(&m)
 	c.Assert(err, IsNil)

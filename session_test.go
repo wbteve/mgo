@@ -29,8 +29,8 @@ package mgo_test
 import (
 	"errors"
 	"flag"
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
+	"github.com/skynetservices/mgo"
+	"github.com/skynetservices/mgo/bson"
 	. "launchpad.net/gocheck"
 	"math"
 	"runtime"
@@ -716,8 +716,8 @@ func (s *S) TestIsDupUnique(c *C) {
 	defer session.Close()
 
 	index := mgo.Index{
-		Key:      []string{"a", "b"},
-		Unique:   true,
+		Key:    []string{"a", "b"},
+		Unique: true,
 	}
 
 	coll := session.DB("mydb").C("mycoll")
@@ -2443,7 +2443,7 @@ func (s *S) TestEnsureIndexExpireAfter(c *C) {
 	indexes, err := coll.Indexes()
 	c.Assert(err, IsNil)
 	c.Assert(indexes[1].Name, Equals, "t_1")
-	c.Assert(indexes[1].ExpireAfter, Equals, 1 * time.Minute)
+	c.Assert(indexes[1].ExpireAfter, Equals, 1*time.Minute)
 
 	if *testTTL {
 		worked := false

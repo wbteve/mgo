@@ -27,10 +27,10 @@
 package mgo_test
 
 import (
+	"github.com/skynetservices/mgo"
+	"github.com/skynetservices/mgo/bson"
 	"io"
 	. "launchpad.net/gocheck"
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
 	"os"
 	"time"
 )
@@ -161,7 +161,7 @@ func (s *S) TestGridFSFileDetails(c *C) {
 	ud := file.UploadDate()
 	now := time.Now()
 	c.Assert(ud.Before(now), Equals, true)
-	c.Assert(ud.After(now.Add(-3 * time.Second)), Equals, true)
+	c.Assert(ud.After(now.Add(-3*time.Second)), Equals, true)
 
 	result := M{}
 	err = db.C("fs.files").Find(nil).One(result)

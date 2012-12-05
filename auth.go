@@ -31,7 +31,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"labix.org/v2/mgo/bson"
+	"github.com/skynetservices/mgo/bson"
 	"sync"
 )
 
@@ -91,13 +91,13 @@ func (socket *mongoSocket) resetNonce() {
 	op.limit = -1
 	op.replyFunc = func(err error, reply *replyOp, docNum int, docData []byte) {
 		if err != nil {
-			socket.kill(errors.New("getNonce: " + err.Error()), true)
+			socket.kill(errors.New("getNonce: "+err.Error()), true)
 			return
 		}
 		result := &getNonceResult{}
 		err = bson.Unmarshal(docData, &result)
 		if err != nil {
-			socket.kill(errors.New("Failed to unmarshal nonce: " + err.Error()), true)
+			socket.kill(errors.New("Failed to unmarshal nonce: "+err.Error()), true)
 			return
 		}
 		debugf("Socket %p to %s: nonce unmarshalled: %#v", socket, socket.addr, result)
@@ -125,7 +125,7 @@ func (socket *mongoSocket) resetNonce() {
 	}
 	err := socket.Query(op)
 	if err != nil {
-		socket.kill(errors.New("resetNonce: " + err.Error()), true)
+		socket.kill(errors.New("resetNonce: "+err.Error()), true)
 	}
 }
 

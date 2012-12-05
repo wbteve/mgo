@@ -31,8 +31,8 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"errors"
+	"github.com/skynetservices/mgo/bson"
 	. "launchpad.net/gocheck"
-	"labix.org/v2/mgo/bson"
 	"net/url"
 	"reflect"
 	"testing"
@@ -807,7 +807,6 @@ func (s *S) TestUnmarshalSetterSetZero(c *C) {
 	c.Assert(ok, Equals, true)
 	c.Assert(value, IsNil)
 }
-
 
 // --------------------------------------------------------------------------
 // Getter test cases.

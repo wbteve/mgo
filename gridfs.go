@@ -30,9 +30,9 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
+	"github.com/skynetservices/mgo/bson"
 	"hash"
 	"io"
-	"labix.org/v2/mgo/bson"
 	"os"
 	"sync"
 	"time"
@@ -72,10 +72,10 @@ type GridFile struct {
 }
 
 type gfsFile struct {
-	Id          interface{}    "_id"
-	ChunkSize   int            "chunkSize"
-	UploadDate  time.Time      "uploadDate"
-	Length      int64          ",minsize"
+	Id          interface{} "_id"
+	ChunkSize   int         "chunkSize"
+	UploadDate  time.Time   "uploadDate"
+	Length      int64       ",minsize"
 	MD5         string
 	Filename    string    ",omitempty"
 	ContentType string    "contentType,omitempty"

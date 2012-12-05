@@ -28,10 +28,10 @@ package mgo_test
 
 import (
 	"fmt"
+	"github.com/skynetservices/mgo"
+	"github.com/skynetservices/mgo/bson"
 	"io"
 	. "launchpad.net/gocheck"
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
 	"net"
 	"strings"
 	"time"
@@ -909,7 +909,10 @@ func (s *S) TestRemovalOfClusterMember(c *C) {
 		c.Fatalf("Test started with bad cluster state: %v", master.LiveServers())
 	}
 
-	result := &struct{ IsMaster bool; Me string }{}
+	result := &struct {
+		IsMaster bool
+		Me       string
+	}{}
 	slave := master.Copy()
 	slave.SetMode(mgo.Monotonic, true) // Monotonic can hold a non-master socket persistently.
 	err = slave.Run("isMaster", result)
@@ -1058,7 +1061,7 @@ func (s *S) TestCustomDial(c *C) {
 	}
 	info := mgo.DialInfo{
 		Addrs: []string{"localhost:40012"},
-		Dial: dial,
+		Dial:  dial,
 	}
 
 	// Use hostname here rather than IP, to make things trickier.

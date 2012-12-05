@@ -27,8 +27,8 @@
 package mgo_test
 
 import (
+	"github.com/skynetservices/mgo"
 	. "launchpad.net/gocheck"
-	"labix.org/v2/mgo"
 	"sync"
 )
 

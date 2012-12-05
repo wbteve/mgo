@@ -30,9 +30,9 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"github.com/skynetservices/mgo"
+	"github.com/skynetservices/mgo/bson"
 	. "launchpad.net/gocheck"
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
 	"os/exec"
 
 	"strings"
@@ -60,7 +60,7 @@ func TestAll(t *testing.T) {
 type S struct {
 	session *mgo.Session
 	stopped bool
-	build mgo.BuildInfo
+	build   mgo.BuildInfo
 }
 
 func (s *S) versionAtLeast(v ...int) bool {
