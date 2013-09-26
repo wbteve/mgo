@@ -16,6 +16,7 @@ go get labix.org/v2/mgo
 2、运行testdb下的setup.sh
 
 配置好mongodb的服务。
+如果报错，安装supervisor，命令#easy_install supervisor
 
 3、运行demo
 
